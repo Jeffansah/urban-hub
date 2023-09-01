@@ -1,5 +1,6 @@
 import express from "express";
 import Hotel from "../models/Hotel.js";
+import { createError } from "../utils/error.js";
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.post("/", async (req, res) => {
       .status(200)
       .json({ message: "Successfully added a new hotel!", newHotel });
   } catch (error) {
-    res.status(500).json({ error });
+    next(error);
   }
 });
 
@@ -33,7 +34,7 @@ router.put("/:id", async (req, res) => {
       .status(200)
       .json({ message: "Successfully updated hotel!", updatedHotel });
   } catch (error) {
-    res.status(500).json({ error });
+    next(error);
   }
 });
 
@@ -42,19 +43,20 @@ router.get("/", async (req, res) => {
   try {
     const Hotels = await Hotel.find();
 
-    return res.status(200).json({ message: "Found Hotels!", Hotels });
+    res.status(200).json({ message: "Found Hotels!", Hotels });
   } catch (error) {
-    res.status(400).json({ error });
+    next(error);
   }
 });
 
 //find one hotel
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
   try {
-    const foundHotel = await Hotel.findById(req.params.id);
-    return res.status(200).json({ message: "Found hotel!", foundHotel });
+    const foundHotel = await Hotel.findById("a");
+    res.status(200).json({ message: "Found hotel!", foundHotel });
   } catch (error) {
-    res.status(401).json({ error });
+    error.message = "Cannot find hotel";
+    next(error);
   }
 });
 
@@ -67,7 +69,7 @@ router.delete("/:id", async (req, res) => {
       .status(200)
       .json({ message: "Succesfully deleted hotel", deletedHotel });
   } catch (error) {
-    res.status(401).json({ errror: "Error deleting hotel" });
+    next(error);
   }
 });
 

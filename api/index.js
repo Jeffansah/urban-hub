@@ -37,6 +37,19 @@ app.use("/api/users", usersRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/hotels", hotelsRoute);
 
+app.use((error, req, res, next) => {
+  const errorStatus = error.status || 500;
+
+  const errorMesasge = error.message || "An error occured";
+
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMesasge,
+    stack: error.stack,
+  });
+});
+
 app.listen(port, () => {
   connectToDatabase();
   console.log(`listening on port: ${port}`);
