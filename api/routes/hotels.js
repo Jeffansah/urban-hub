@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
 //find one hotel
 router.get("/:id", async (req, res, next) => {
   try {
-    const foundHotel = await Hotel.findById("a");
+    const foundHotel = await Hotel.findById(req.params.id);
     res.status(200).json({ message: "Found hotel!", foundHotel });
   } catch (error) {
     error.message = "Cannot find hotel";
