@@ -1,7 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import { createError } from "../utils/error.js";
-import { verifyToken, verifyUser } from "../utils/verifyToken.js";
+import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -14,8 +14,12 @@ router.get("/checkuser/:id", verifyUser, (req, res, next) => {
   res.status(200).json({ message: "You are Authenticated!" });
 });
 
+router.get("/checkadmin/:id", verifyAdmin, (req, res, next) => {
+  res.status(200).json({ message: "Hello Admin! You are Authenticated!" });
+});
+
 //update users
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyUser, async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
@@ -35,7 +39,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //find all users
-router.get("/", async (req, res) => {
+router.get("/", verifyAdmin, async (req, res) => {
   try {
     const users = await User.find();
 
@@ -46,7 +50,7 @@ router.get("/", async (req, res) => {
 });
 
 //find one user
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", verifyUser, async (req, res, next) => {
   try {
     const foundUser = await User.findById(req.params.id);
     res.status(200).json({ message: "Found user!", foundUser });
@@ -57,7 +61,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 //delete users
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyUser, async (req, res) => {
   try {
     const deletedUser = await User.findOneAndDelete(req.params.id);
 
