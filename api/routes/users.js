@@ -6,20 +6,20 @@ import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router();
 
 //check authenticated user
-router.get("/checkauthentication", verifyToken, (req, res, next) => {
-  res.status(200).json({ message: "User Authenticated!" });
-});
+// router.get("/checkauthentication", verifyToken, (req, res, next) => {
+//   res.status(200).json({ message: "User Authenticated!" });
+// });
 
-router.get("/checkuser/:id", verifyUser, (req, res, next) => {
-  res.status(200).json({ message: "You are Authenticated!" });
-});
+// router.get("/checkuser/:id", verifyUser, (req, res, next) => {
+//   res.status(200).json({ message: "You are Authenticated!" });
+// });
 
-router.get("/checkadmin/:id", verifyAdmin, (req, res, next) => {
-  res.status(200).json({ message: "Hello Admin! You are Authenticated!" });
-});
+// router.get("/checkadmin/:id", verifyAdmin, (req, res, next) => {
+//   res.status(200).json({ message: "Hello Admin! You are Authenticated!" });
+// });
 
 //update users
-router.put("/:id", verifyUser, async (req, res) => {
+router.put("/:id", verifyUser, async (req, res, next) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
@@ -39,7 +39,7 @@ router.put("/:id", verifyUser, async (req, res) => {
 });
 
 //find all users
-router.get("/", verifyAdmin, async (req, res) => {
+router.get("/", verifyAdmin, async (req, res, next) => {
   try {
     const users = await User.find();
 
@@ -61,7 +61,7 @@ router.get("/:id", verifyUser, async (req, res, next) => {
 });
 
 //delete users
-router.delete("/:id", verifyUser, async (req, res) => {
+router.delete("/:id", verifyUser, async (req, res, next) => {
   try {
     const deletedUser = await User.findOneAndDelete(req.params.id);
 

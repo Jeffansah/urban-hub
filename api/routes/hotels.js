@@ -6,7 +6,7 @@ import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router();
 
 //create hotel
-router.post("/", verifyAdmin, async (req, res) => {
+router.post("/", verifyAdmin, async (req, res, next) => {
   const newHotel = new Hotel(req.body);
 
   try {
@@ -20,7 +20,7 @@ router.post("/", verifyAdmin, async (req, res) => {
 });
 
 //update hotels
-router.put("/:id", verifyAdmin, async (req, res) => {
+router.put("/:id", verifyAdmin, async (req, res, next) => {
   try {
     const updatedHotel = await Hotel.findByIdAndUpdate(
       req.params.id,
@@ -40,7 +40,7 @@ router.put("/:id", verifyAdmin, async (req, res) => {
 });
 
 //find all hotels
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const Hotels = await Hotel.find();
 
@@ -62,7 +62,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 //delete hotel
-router.delete("/:id", verifyAdmin, async (req, res) => {
+router.delete("/:id", verifyAdmin, async (req, res, next) => {
   try {
     const deletedHotel = await Hotel.findOneAndDelete(req.params.id);
 
