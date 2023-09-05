@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Banner from "../../components/banner/Banner";
 import DiscountCard from "../../components/discountcard/DiscountCard";
 import Featured from "../../components/featured/Featured";
@@ -8,42 +9,85 @@ import Navbar from "../../components/navbar/Navbar";
 import PropertyList from "../../components/propertyList/PropertyList";
 import SmallCard from "../../components/smallcard/SmallCard";
 import { locationsData } from "../../data/locationsData";
+import vacationCities from "../../data/vacationCities";
 import "./home.css";
+import popularPlaces from "../../data/placesOfInterest";
 
 const Home = () => {
+  const [showCities, setShowCities] = useState(true);
+  const [showPlaces, setShowPlaces] = useState(false);
+
   return (
     <div>
       <Navbar />
       <Header />
-      <div className="mt-[50px] flex flex-col items-center gap-[30px]">
+      <div className="mt-[50px] flex flex-col items-center">
         <Featured />
-        <h1 className="w-[1024px] text-xl font-bold mt-2">
+        <h1 className="w-[1024px] text-xl font-bold mt-12">
           Browse property by type
         </h1>
         <PropertyList />
-        <h1 className="w-[1024px] text-xl font-bold mt-2">Homes guests love</h1>
+        <h1 className="w-[1024px] text-xl font-bold mt-12">
+          Homes guests love
+        </h1>
         <FeaturedProperties />
         <DiscountCard />
         <Banner
-          img={"https://links.papareact.com/4cj"}
+          img="https://i.ibb.co/80nTW8n/wepik-export-2023090519192693-OO.png"
           title="The Greatest Outdoors"
-          description="Wishlists curated by Urban Hub"
+          description="Wishlists curated by UrbanHub"
           buttonText="Get Inspired"
         />
-        <MailList />
-        <div className="w-[1024px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {locationsData.map((item) => (
-            <SmallCard
-              key={item.location}
-              img={item.img}
-              distance={item.distance}
-              location={item.location}
-            />
-          ))}
+
+        <h1 className="w-[1024px] text-xl font-bold mt-12">
+          Destinations we love
+        </h1>
+        <div className="flex max-w-5xl w-full gap-8 text-sm mt-4">
+          <button
+            onClick={() => {
+              setShowCities(true);
+              setShowPlaces(false);
+            }}
+            className={`${
+              showCities &&
+              "border border-[#0071c2] bg-white text-[#0071c2] text-sm rounded-3xl"
+            }  p-2 px-3`}
+          >
+            Cities
+          </button>
+          <button
+            className={`${
+              showPlaces &&
+              "border border-[#0071c2] bg-white text-[#0071c2] text-sm rounded-3xl"
+            }  p-2 px-3`}
+            onClick={() => {
+              setShowCities(false);
+              setShowPlaces(true);
+            }}
+          >
+            Places of interest
+          </button>
         </div>
+        {showCities && (
+          <div className="w-[1024px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 mt-4">
+            {vacationCities.map((item) => (
+              <SmallCard key={item.city} {...item} />
+            ))}
+          </div>
+        )}
+        {showPlaces && (
+          <div className="w-[1024px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5  mt-4">
+            {popularPlaces.map((item) => (
+              <SmallCard key={item.place} {...item} />
+            ))}
+          </div>
+        )}
+        <MailList />
       </div>
     </div>
   );
+
+  //<img src="https://i.ibb.co/80nTW8n/wepik-export-2023090519192693-OO.png" alt="wepik-export-2023090519192693-OO" border="0">
 };
 
 export default Home;

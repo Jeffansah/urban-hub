@@ -2,15 +2,15 @@ import React from "react";
 
 const PropertyList = () => {
   return (
-    <div className="w-full max-w-5xl flex justify-between gap-5">
+    <div className="w-full max-w-5xl flex justify-between gap-5 mt-5">
       <div className="rounded-[10px] overflow-hidden cursor-pointer flex-1">
         <img
           src="https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="
           alt=""
           className="w-full h-[150px] object-cover  rounded-[10px]"
         />
-        <div className="pListTitles">
-          <h1 className="text-[18px] font-bold">Hotels</h1>
+        <div className="pListTitles mt-2">
+          <h1 className="text-[16px] font-semibold">Hotels</h1>
           <h2 className="text-sm font-light">233 hotels</h2>
         </div>
       </div>
@@ -20,8 +20,8 @@ const PropertyList = () => {
           alt=""
           className="w-full h-[150px] object-cover rounded-[10px]"
         />
-        <div className="pListTitles">
-          <h1 className="text-[18px] font-bold">Apartments</h1>
+        <div className="pListTitles mt-2">
+          <h1 className="text-[16px] font-semibold">Apartments</h1>
           <h2 className="text-sm font-light">2331 hotels</h2>
         </div>
       </div>
@@ -31,8 +31,8 @@ const PropertyList = () => {
           alt=""
           className="w-full h-[150px] object-cover  rounded-[10px]"
         />
-        <div className="pListTitles">
-          <h1 className="text-[18px] font-bold">Resorts</h1>
+        <div className="pListTitles mt-2">
+          <h1 className="text-[16px] font-semibold">Resorts</h1>
           <h2 className="text-sm font-light">2331 hotels</h2>
         </div>
       </div>
@@ -42,8 +42,8 @@ const PropertyList = () => {
           alt=""
           className="w-full h-[150px] object-cover  rounded-[10px]"
         />
-        <div className="pListTitles">
-          <h1 className="text-[18px] font-bold">Villas</h1>
+        <div className="pListTitles mt-2">
+          <h1 className="text-[16px] font-semibold">Villas</h1>
           <h2 className="text-sm font-light">2331 hotels</h2>
         </div>
       </div>
@@ -53,8 +53,8 @@ const PropertyList = () => {
           alt=""
           className="w-full h-[150px] object-cover  rounded-[10px]"
         />
-        <div className="pListTitles">
-          <h1 className="text-[18px] font-bold">Cabins</h1>
+        <div className="pListTitles mt-2">
+          <h1 className="text-[16px] font-semibold">Cabins</h1>
           <h2 className="text-sm font-light">2331 hotels</h2>
         </div>
       </div>

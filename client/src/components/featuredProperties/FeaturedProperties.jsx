@@ -4,7 +4,7 @@ import propertyData from "../../data/propertyData";
 const FeaturedProperties = () => {
   return (
     <>
-      <div className="w-full max-w-5xl flex justify-between gap-5">
+      <div className="w-full max-w-5xl flex justify-between gap-5 mt-5">
         {propertyData.map((property, index) => (
           <div
             key={index}

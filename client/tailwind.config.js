@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         main: "#003580",
       },
+      fontSize: {
+        urbanist: "Urbanist, sans-serif",
+      },
     },
   },
   plugins: [],

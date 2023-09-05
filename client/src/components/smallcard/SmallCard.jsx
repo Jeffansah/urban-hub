@@ -1,12 +1,9 @@
-const SmallCard = ({ img, location, distance }) => {
+const SmallCard = ({ city, properties, place }) => {
   return (
-    <div className="flex items-center m-2 mt-5 space-x-4 rounded-xl hover:bg-gray-100  cursor-pointer hover:scale-105 transition transform duration-200 ease-out">
-      <div className="relative h-16 w-16">
-        <img src={img} layout="fill" className="rounded-lg" />
-      </div>
-      <div>
-        <h2>{location}</h2>
-        <h3 className="text-gray-500">{distance}</h3>
+    <div className="flex items-center space-x-4 rounded-xl hover:bg-gray-100  cursor-pointer hover:scale-105 transition transform duration-200 ease-out">
+      <div className="p-2">
+        <h2 className="text-sm font-semibold">{city || place}</h2>
+        <h3 className="text-gray-500 text-sm">{`${properties} properties`}</h3>
       </div>
     </div>
   );
