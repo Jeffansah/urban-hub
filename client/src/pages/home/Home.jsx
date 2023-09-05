@@ -8,17 +8,17 @@ import MailList from "../../components/maillist/MailList";
 import Navbar from "../../components/navbar/Navbar";
 import PropertyList from "../../components/propertyList/PropertyList";
 import SmallCard from "../../components/smallcard/SmallCard";
-import { locationsData } from "../../data/locationsData";
 import vacationCities from "../../data/vacationCities";
 import "./home.css";
 import popularPlaces from "../../data/placesOfInterest";
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   const [showCities, setShowCities] = useState(true);
   const [showPlaces, setShowPlaces] = useState(false);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Navbar />
       <Header />
       <div className="mt-[50px] flex flex-col items-center">
@@ -83,11 +83,10 @@ const Home = () => {
           </div>
         )}
         <MailList />
+        <Footer />
       </div>
     </div>
   );
-
-  //<img src="https://i.ibb.co/80nTW8n/wepik-export-2023090519192693-OO.png" alt="wepik-export-2023090519192693-OO" border="0">
 };
 
 export default Home;
