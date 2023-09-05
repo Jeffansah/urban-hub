@@ -86,6 +86,10 @@ const Header = ({ type }) => {
               <div className="flex items-center gap-2.5">
                 <FontAwesomeIcon icon={faBed} className="text-gray-500" />
                 <input
+                  onClick={() => {
+                    setOpenOptions(false);
+                    setOpenDate(false);
+                  }}
                   type="text"
                   placeholder="Where are you going?"
                   className="border-none outline-none text-gray-600 placeholder:text-gray-600 focus:placeholder:text-gray-400"
