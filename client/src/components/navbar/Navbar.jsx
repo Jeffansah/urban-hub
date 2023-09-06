@@ -1,14 +1,14 @@
 import "./navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="h-[50px] bg-main flex justify-center">
-      <div className="w-full max-w-5xl text-white flex items-center justify-between max-sm:px-3">
+      <div className="w-full max-w-5xl text-white flex items-center justify-between max-md:px-3">
         <span className="font-bold text-2xl max-md:text-xl">UrbanHub</span>
         <div className="navItems max-md:hidden">
           <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
@@ -49,7 +49,7 @@ const Navbar = () => {
               </svg>
             </div>
             <div className="flex flex-col w-full px-6 mt-10">
-              <div className="w-full gap-2 flex justify-center items-center mb-6">
+              <div className="w-full gap-2 flex justify-center items-center mb-6 text-sm">
                 <button className="navButton ml-5 border border-main py-1.5 px-2.5 cursor-pointer text-main bg-white rounded-sm">
                   Login
                 </button>
