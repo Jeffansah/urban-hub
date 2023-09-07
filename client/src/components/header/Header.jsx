@@ -69,23 +69,23 @@ const Header = ({ type }) => {
         }`}
       >
         <div className="flex gap-10 mb-[50px] max-md:overflow-x-scroll max-md:scrollbar-hide max-md:whitespace-nowrap max-lg:px-3 max-sm:mb-[20px]">
-          <div className="flex items-center gap-2.5 active whitespace-nowrap rounded-[26px] bg-[#154fa0] border border-white py-2.5 px-[13px] max-md:p-2">
+          <div className="flex items-center gap-2.5 active whitespace-nowrap rounded-[26px] bg-[#154fa0] border border-white py-2.5 px-[13px] max-md:p-2 cursor-pointer">
             <FontAwesomeIcon icon={faBed} className="max-md:h-4" />
             <span className="max-md:text-xs">Stays</span>
           </div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 cursor-pointer">
             <FontAwesomeIcon icon={faPlane} className="max-md:h-4" />
             <span className="max-md:text-xs">Flights</span>
           </div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 cursor-pointer">
             <FontAwesomeIcon icon={faCar} />
             <span className="max-md:text-xs">Car rentals</span>
           </div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 cursor-pointer">
             <FontAwesomeIcon icon={faBuilding} />
             <span className="max-md:text-xs">Attractions</span>
           </div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 cursor-pointer">
             <FontAwesomeIcon icon={faTaxi} />
             <span className="max-md:text-xs">Airport taxis</span>
           </div>
@@ -343,4 +343,3 @@ const Header = ({ type }) => {
 };
 
 export default Header;
-
