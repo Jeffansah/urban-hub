@@ -2,8 +2,8 @@ import { footerLinks } from "../../data/footerLinks";
 
 const Footer = () => {
   return (
-    <div className="w-full max-w-[1024px] text-xs mt-12">
-      <div className="w-full flex justify-between mb-[50px]">
+    <div className="w-full max-w-[1024px] text-xs sm:mt-12 max-lg:px-5 mt-6">
+      <div className="w-full max-lg:grid max-sm:grid-cols-3 md:grid-cols-5 flex justify-between mb-[50px] max-lg:gap-3">
         {footerLinks.lists.map((list, index) => (
           <ul className="p-0" key={index}>
             <li className="mb-2.5 text-main font-bold text-md cursor-pointer">

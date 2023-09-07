@@ -3,14 +3,14 @@ import React from "react";
 const DiscountCard = () => {
   return (
     <div className="w-full max-w-5xl flex mt-12 border border-gray-200 rounded-md pb-4">
-      <div className="p-6 pl-8">
+      <div className="p-6 pl-8 max-sm:hidden">
         <img
           src="https://t-cf.bstatic.com/design-assets/assets/v3.85.0/illustrations-traveller/GlobeGeniusBadge.png"
           alt="Globe-Genius-Badge"
           className="w-40"
         />
       </div>
-      <div className="flex flex-col mt-8 max-w-md">
+      <div className="flex flex-col mt-8 max-w-md max-sm:max-w-xs">
         <h1 className="font-bold text-2xl">
           Discover great deals around the world
         </h1>

@@ -21,13 +21,13 @@ const Home = () => {
     <div className="overflow-x-hidden">
       <Navbar />
       <Header />
-      <div className="mt-[50px] flex flex-col items-center">
+      <div className="mt-[50px] lg:flex lg:flex-col md:items-center max-lg:px-5">
         <Featured />
-        <h1 className="w-[1024px] text-xl font-bold mt-12">
+        <h1 className="w-[1024px] max-md:text-lg text-xl max-md:font-medium font-bold mt-12">
           Browse property by type
         </h1>
         <PropertyList />
-        <h1 className="w-[1024px] text-xl font-bold mt-12">
+        <h1 className="w-[1024px] max-md:text-lg max-md:font-medium text-xl font-bold mt-12">
           Homes guests love
         </h1>
         <FeaturedProperties />
@@ -39,7 +39,7 @@ const Home = () => {
           buttonText="Get Inspired"
         />
 
-        <h1 className="w-[1024px] text-xl font-bold mt-12">
+        <h1 className="w-[1024px] text-xl font-bold mt-12 max-md:text-lg max-md:font-medium">
           Destinations we love
         </h1>
         <div className="flex max-w-5xl w-full gap-8 text-sm mt-4">
@@ -69,22 +69,22 @@ const Home = () => {
           </button>
         </div>
         {showCities && (
-          <div className="w-[1024px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 mt-4">
+          <div className="lg:w-[1024px] grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2.5 mt-4">
             {vacationCities.map((item) => (
               <SmallCard key={item.city} {...item} />
             ))}
           </div>
         )}
         {showPlaces && (
-          <div className="w-[1024px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5  mt-4">
+          <div className="md:w-[1024px] grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5  mt-4">
             {popularPlaces.map((item) => (
               <SmallCard key={item.place} {...item} />
             ))}
           </div>
         )}
-        <MailList />
-        <Footer />
       </div>
+      <MailList />
+      <Footer />
     </div>
   );
 };

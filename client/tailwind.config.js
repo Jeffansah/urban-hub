@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         main: "#003580",
+        background: "#febb02",
       },
       fontSize: {
         urbanist: "Urbanist, sans-serif",

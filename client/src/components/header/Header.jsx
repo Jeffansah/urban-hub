@@ -56,11 +56,11 @@ const Header = ({ type }) => {
   return (
     <header className="bg-main text-white flex justify-center relative">
       <div
-        className={`w-full max-w-5xl mt-5 mx-0 md:mb-[100px] max-md:mb-6 ${
-          type === "list" && "mb-0"
+        className={`w-full max-w-5xl mt-5 mx-0 lg:mb-[100px] max-lg:mb-6 ${
+          type === "list" && "mb-0 lg:mb-0"
         }`}
       >
-        <div className="flex gap-10 mb-[50px] max-md:overflow-x-scroll max-md:scrollbar-hide max-md:whitespace-nowrap max-md:px-3 max-md:mb-[20px]">
+        <div className="flex gap-10 mb-[50px] max-md:overflow-x-scroll max-md:scrollbar-hide max-md:whitespace-nowrap max-lg:px-3 max-sm:mb-[20px]">
           <div className="flex items-center gap-2.5 active whitespace-nowrap rounded-[26px] bg-[#154fa0] border border-white py-2.5 px-[13px] max-md:p-2">
             <FontAwesomeIcon icon={faBed} className="max-md:h-4" />
             <span className="max-md:text-xs">Stays</span>
@@ -83,19 +83,19 @@ const Header = ({ type }) => {
           </div>
         </div>
         {type !== "list" && (
-          <div className="max-md:px-3">
-            <h1 className="text-4xl font-semibold max-md:text-3xl">
+          <div className="max-lg:px-3">
+            <h1 className="text-4xl font-semibold max-lg:text-3xl">
               Unlock Endless Rewards: Unleash the Genius!
             </h1>
-            <p className="my-5 mx-0 max-md:text-sm max-md:my-2">
+            <p className="my-5 mx-0 max-md:text-sm max-md:my-2 max-lg:max-w-xl">
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free UrbanHub account
             </p>
             <button className="bg-[#0071c2] text-white font-medium p-2.5 cursor-pointer max-md:mt-2 max-md:text-sm">
               Sign in / Register
             </button>
-            <div className="bg-white md:border-[3px] md:border-[#febb02] flex max-md:flex-col md:items-center md:justify-around md:py-2.5 px-0 rounded-md md:absolute md:bottom-[-25px] w-full md:max-w-5xl max-md:mt-5 max-md:text-sm">
-              <div className="flex items-center gap-2.5 max-md:w-full max-md:border-[3px] max-md:border-[#febb02] max-md:p-3 max-md:border-t-[6px]">
+            <div className=" bg-white lg:border-[3px] lg:border-[#febb02] flex max-lg:flex-col lg:items-center lg:justify-around lg:py-2.5 px-0 rounded-md lg:absolute lg:bottom-[-25px] w-full lg:max-w-5xl max-lg:mt-5 max-lg:text-sm">
+              <div className="flex items-center gap-2.5 max-lg:w-full max-lg:border-[3px] max-lg:border-[#febb02] max-lg:p-3 max-lg:border-t-[6px]">
                 <FontAwesomeIcon icon={faBed} className="text-gray-500" />
                 <input
                   onClick={(e) => {
@@ -104,10 +104,10 @@ const Header = ({ type }) => {
                   }}
                   type="text"
                   placeholder="Where are you going?"
-                  className="md:border-none  outline-none  text-gray-600 placeholder:text-gray-600 focus:placeholder:text-gray-400"
+                  className="lg:border-none  outline-none  text-gray-600 placeholder:text-gray-600 focus:placeholder:text-gray-400"
                 />
               </div>
-              <div className="flex max-md:border-[3px] max-md:border-[#febb02] items-center gap-2.5 max-md:p-3">
+              <div className="flex max-lg:border-[3px] max-lg:border-[#febb02] items-center gap-2.5 max-lg:p-3">
                 <FontAwesomeIcon icon={faCalendar} className="text-gray-500" />
                 <span
                   onClick={() => {
@@ -120,7 +120,7 @@ const Header = ({ type }) => {
                   "iii, MMM dd"
                 )}`}</span>
                 {openDateModal && (
-                  <div className="max-md:hidden top-[50px] absolute z-10">
+                  <div className="max-lg:hidden top-[50px] absolute z-10">
                     <DateRange
                       className=""
                       editableDateInputs={true}
@@ -138,7 +138,7 @@ const Header = ({ type }) => {
                     onClose={() => setOpenDateModal(false)}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
-                    className="md:hidden"
+                    className="lg:hidden"
                   >
                     <Box sx={style}>
                       <DateRange
@@ -154,7 +154,7 @@ const Header = ({ type }) => {
                   </Modal>
                 )}
               </div>
-              <div className="flex items-center gap-2.5 max-md:border-[3px] max-md:border-[#febb02] max-md:p-3  max-md:border-b-[6px]">
+              <div className="flex items-center gap-2.5 max-lg:border-[3px] max-lg:border-[#febb02] max-lg:p-3  max-lg:border-b-[6px]">
                 <FontAwesomeIcon icon={faPerson} className="text-gray-500" />
                 <span
                   onClick={() => {
@@ -170,7 +170,7 @@ const Header = ({ type }) => {
                   } · ${options.room} ${options.room === 1 ? "room" : "rooms"}`}
                 </span>
                 {openOptionsModal && (
-                  <div className="max-md:hidden absolute top-[50px] text-gray-600 rounded-md shadow-md bg-white z-10">
+                  <div className="max-lg:hidden absolute top-[50px] text-gray-600 rounded-md shadow-md bg-white z-10">
                     <div className="flex w-[200px] justify-between m-2.5">
                       <span className="">Adults</span>
                       <div className="flex gap-2.5 items-center text-black text-[12px]">
@@ -243,7 +243,7 @@ const Header = ({ type }) => {
                     onClose={() => setOpenOptionsModal(false)}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
-                    className="md:hidden text-gray-600"
+                    className="lg:hidden text-gray-600"
                   >
                     <Box sx={style}>
                       <div className="bg-white p-3 w-[300px] py-7 ">
@@ -317,7 +317,7 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="flex items-center gap-2.5">
-                <button className="bg-[#0071c2] text-white font-medium p-2.5 cursor-pointer max-md:w-full max-md:border-[3px] max-md:border-[#febb02] max-md:border-t-0 max-md:border-b-[6px] max-md:p-3">
+                <button className="bg-[#0071c2] text-white font-medium p-2.5 cursor-pointer max-lg:w-full max-lg:border-[3px] max-lg:border-[#febb02] max-lg:border-t-0 max-lg:border-b-[6px] max-lg:p-3">
                   Search
                 </button>
               </div>
