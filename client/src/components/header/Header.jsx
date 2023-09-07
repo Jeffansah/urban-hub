@@ -18,6 +18,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -28,6 +29,7 @@ const style = {
 };
 
 const Header = ({ type }) => {
+  const [destination, setDestination] = useState("");
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -44,6 +46,8 @@ const Header = ({ type }) => {
     room: 1,
   });
 
+  const navigate = useNavigate();
+
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -53,11 +57,15 @@ const Header = ({ type }) => {
     });
   };
 
+  const handleSearch = () => {
+    navigate("hotels", { state: { destination, date, options } });
+  };
+
   return (
-    <header className="bg-main text-white flex justify-center relative">
+    <header className="bg-main text-white flex justify-center relative text-sm">
       <div
-        className={`w-full max-w-5xl mt-5 mx-0 lg:mb-[100px] max-lg:mb-6 ${
-          type === "list" && "mb-0 lg:mb-0"
+        className={`w-full max-w-5xl mt-5 mx-0 ${
+          type !== "list" && "lg:mb-[100px] max-lg:mb-6"
         }`}
       >
         <div className="flex gap-10 mb-[50px] max-md:overflow-x-scroll max-md:scrollbar-hide max-md:whitespace-nowrap max-lg:px-3 max-sm:mb-[20px]">
@@ -102,6 +110,7 @@ const Header = ({ type }) => {
                     setOpenOptionsModal(false);
                     setOpenDateModal(false);
                   }}
+                  onChange={(e) => setDestination(e.target.value)}
                   type="text"
                   placeholder="Where are you going?"
                   className="lg:border-none  outline-none  text-gray-600 placeholder:text-gray-600 focus:placeholder:text-gray-400"
@@ -129,6 +138,7 @@ const Header = ({ type }) => {
                       }}
                       moveRangeOnFirstSelection={false}
                       ranges={date}
+                      minDate={new Date()}
                     />
                   </div>
                 )}
@@ -148,7 +158,7 @@ const Header = ({ type }) => {
                         }}
                         moveRangeOnFirstSelection={false}
                         ranges={date}
-                        preventSelection={false}
+                        minDate={new Date()}
                       />
                     </Box>
                   </Modal>
@@ -317,7 +327,10 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="flex items-center gap-2.5">
-                <button className="bg-[#0071c2] text-white font-medium p-2.5 cursor-pointer max-lg:w-full max-lg:border-[3px] max-lg:border-[#febb02] max-lg:border-t-0 max-lg:border-b-[6px] max-lg:p-3">
+                <button
+                  onClick={handleSearch}
+                  className="bg-[#0071c2] text-white font-medium p-2.5 cursor-pointer max-lg:w-full max-lg:border-[3px] max-lg:border-[#febb02] max-lg:border-t-0 max-lg:border-b-[6px] max-lg:p-3"
+                >
                   Search
                 </button>
               </div>
@@ -330,3 +343,4 @@ const Header = ({ type }) => {
 };
 
 export default Header;
+
