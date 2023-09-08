@@ -13,7 +13,7 @@ const MailList = () => {
         <input
           type="text"
           placeholder="Your Email Address"
-          className="max-lg:w-[285px] w-[300px] h-[40px] lg:h-[50px] p-2.5 border-none mr-2.5 placeholder:text-xs rounded-[5px] max-xs:mb-2.5 mb-3 text-gray-800"
+          className="max-lg:w-[285px] w-[300px] h-[40px] lg:h-[50px] p-2.5 border-none mr-2.5 placeholder:text-sm rounded-[5px] max-xs:mb-2.5 mb-3 text-gray-800 focus:outline-none"
         />
         <div className="md:flex justify-center">
           <button className="max-md:h-[40px] flex items-center h-[50px] bg-[#0071c2] text-white font-medium border-none rounded-[5px] p-2">
