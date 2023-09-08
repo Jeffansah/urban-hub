@@ -50,8 +50,34 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//find hotels by city
+router.get("/countByCity", async (req, res, next) => {
+  const cities = req.query.cities.split(",");
+
+  try {
+    const list = await Promise.all(
+      cities.map((city) => Hotel.countDocuments({ city }))
+    );
+
+    res.status(200).json(list);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//find hotels by Type
+router.get("/countByType", async (req, res, next) => {
+  try {
+    const Hotels = await Hotel.find();
+
+    res.status(200).json({ message: "Found Hotels!", Hotels });
+  } catch (error) {
+    next(error);
+  }
+});
+
 //find one hotel
-router.get("/:id", async (req, res, next) => {
+router.get("/search/:id", async (req, res, next) => {
   try {
     const foundHotel = await Hotel.findById(req.params.id);
     res.status(200).json({ message: "Found hotel!", foundHotel });

@@ -9,13 +9,13 @@ const FeaturedProperties = () => {
           {propertyData.map((property, index) => (
             <div
               key={index}
-              className="flex-1 shadow-md rounded-[10px] overflow-hidden cursor-pointer hover:shadow-lg group"
+              className="flex-1 shadow-md rounded-[10px] overflow-hidden cursor-pointer hover:shadow-lg"
             >
               <div className="max-lg:w-52 w-64 lg:h-52 overflow-hidden">
                 <img
                   src={property.image}
                   alt={property.name}
-                  className="h-full max-lg:h-[170px] object-cover rounded-[10px] rounded-b-none w-full group-hover:scale-110 ease-out transition duration-700"
+                  className="h-full max-lg:h-[170px] object-cover rounded-[10px] rounded-b-none w-full "
                 />
               </div>
               <div className="flex-1 gap-1.5 flex flex-col p-3 pt-0 mt-3 whitespace-nowrap">
