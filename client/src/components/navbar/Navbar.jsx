@@ -9,7 +9,9 @@ const Navbar = () => {
   return (
     <nav className="h-[50px] bg-main flex justify-center overflow-x-hidden">
       <div className="w-full max-w-5xl text-white flex items-center justify-between max-lg:px-3">
-        <span className="font-bold text-2xl max-md:text-xl">UrbanHub</span>
+        <a href="/">
+          <span className="font-bold text-2xl max-md:text-xl">UrbanHub</span>
+        </a>
         <div className="navItems max-lg:hidden text-sm">
           <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
             Register
