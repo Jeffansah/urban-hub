@@ -25,11 +25,23 @@ const Hotel = () => {
     <div>
       <Navbar />
       <Header type="list" />
-      <div className="flex items-center mt-5 flex-col">
+      <div className="mt-5 flex items-center flex-col">
         {open && (
-          <div className="sticky top-0 left-0 w-screen h-screen bg-[#0000006d] z-100 flex items-center">
-            <FontAwesomeIcon icon={faCircleArrowLeft} />
-            <FontAwesomeIcon icon={faCircleXmark} />
+          <div className="fixed inset-0 bg-[#0000007b] z-100 flex items-center">
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="absolute top-20 right-20 text-[30px] text-[lightgray] cursor-pointer"
+              onClick={() => setOpen(false)}
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              className="text-[50px] m-5 text-[lightgray] cursor-pointer"
+              onClick={() => {
+                if (slideNumber === 0) setSlideNumber(5);
+                else setSlideNumber((prev) => prev - 1);
+              }}
+            />
+
             <div className="w-full h-full flex justify-center items-center">
               <img
                 src={hotelPhotos[slideNumber].src}
@@ -37,7 +49,14 @@ const Hotel = () => {
                 className="w-4/5"
               />
             </div>
-            <FontAwesomeIcon icon={faCircleArrowRight} />
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className="text-[50px] m-5 text-[lightgray] cursor-pointer"
+              onClick={() => {
+                if (slideNumber === 5) setSlideNumber(0);
+                else setSlideNumber((prev) => prev + 1);
+              }}
+            />
           </div>
         )}
         <div className="w-full max-w-5xl flex flex-col gap-2.5">
@@ -64,7 +83,7 @@ const Hotel = () => {
                   onClick={() => handleOpen(index)}
                   src={photo.src}
                   alt={index}
-                  className="w-full object-cover"
+                  className="w-full object-cover cursor-pointer"
                 />
               </div>
             ))}
