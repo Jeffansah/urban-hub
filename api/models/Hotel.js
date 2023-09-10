@@ -14,6 +14,10 @@ const HotelSchema = new Schema({
     type: String,
     required: true,
   },
+  country: {
+    type: String,
+    required: true,
+  },
   address: {
     type: String,
     required: true,
@@ -29,6 +33,10 @@ const HotelSchema = new Schema({
     type: String,
     required: true,
   },
+  extract: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
@@ -37,6 +45,9 @@ const HotelSchema = new Schema({
     type: Number,
     min: 0,
     max: 5,
+  },
+  ratingText: {
+    type: String,
   },
   rooms: {
     type: [String],

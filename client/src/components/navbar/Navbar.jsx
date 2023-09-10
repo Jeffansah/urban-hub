@@ -2,6 +2,7 @@ import "./navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,9 +10,9 @@ const Navbar = () => {
   return (
     <nav className="h-[50px] bg-main flex justify-center overflow-x-hidden">
       <div className="w-full max-w-5xl text-white flex items-center justify-between max-lg:px-3">
-        <a href="/">
+        <Link to="/">
           <span className="font-bold text-2xl max-md:text-xl">UrbanHub</span>
-        </a>
+        </Link>
         <div className="navItems max-lg:hidden text-sm">
           <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
             Register

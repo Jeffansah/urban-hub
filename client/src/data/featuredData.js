@@ -3,14 +3,14 @@
 const featuredData = [
   {
     id: 1,
-    city: "Dublin",
+    city: "Amsterdam",
     imageSrc:
-      "https://cf.bstatic.com/xdata/images/city/max500/957801.webp?k=a969e39bcd40cdcc21786ba92826063e3cb09bf307bcfeac2aa392b838e9b7a5&o=",
+      "https://cdn.contexttravel.com/image/upload/c_fill,q_60,w_2600/v1549317470/production/city/hero_image_28_1549317469.jpg",
     propertiesCount: 123,
   },
   {
     id: 2,
-    city: "Reno",
+    city: "London",
     imageSrc:
       "https://cf.bstatic.com/xdata/images/city/max500/690334.webp?k=b99df435f06a15a1568ddd5f55d239507c0156985577681ab91274f917af6dbb&o=",
     propertiesCount: 533,

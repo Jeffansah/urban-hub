@@ -7,6 +7,8 @@ import { DateRange } from "react-date-range";
 import SearchResult from "../../components/searchResult/SearchResult";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import useFetch from "../../hooks/useFetch";
+import { Skeleton } from "@mui/material";
 
 const List = () => {
   const location = useLocation();
@@ -19,6 +21,18 @@ const List = () => {
   const [room, setRoom] = useState(location.state.options.room);
   const [openDateModal, setOpenDateModal] = useState(false);
   const [openOptionsModal, setOpenOptionsModal] = useState(false);
+  const [minPrice, setMinPrice] = useState(undefined);
+  const [maxPrice, setMaxPrice] = useState(undefined);
+
+  const { data, loading, error, reFetchData } = useFetch(
+    `/hotels?city=${
+      destination.charAt(0).toUpperCase() + destination.slice(1)
+    }&min=${minPrice || 0}&max=${maxPrice || 999}`
+  );
+
+  const handleClick = () => {
+    reFetchData();
+  };
 
   return (
     <>
@@ -26,7 +40,7 @@ const List = () => {
       <Header type="list" />
       <div className="flex max-lg:flex-col justify-center lg:mt-5 max-lg:overflow-hidden">
         <div className="w-full max-w-5xl flex gap-5  max-lg:flex-col">
-          <div className=" bg-background  p-2.5 lg:rounded-[10px] lg:sticky top-10 w-1/3 text-xs h-max lg:max-h-[720px] max-lg:w-full">
+          <div className=" bg-background  p-2.5 lg:rounded-[10px] lg:sticky top-10 w-1/3 text-xs h-max lg:max-h-[720px] max-lg:w-full lg:min-w-[250px]">
             <h1 className="text-xl font-bold text-gray-600 mb-2.5 max-lg:hidden">
               Search
             </h1>
@@ -71,16 +85,18 @@ const List = () => {
                       Min price <small>per night</small>
                     </span>
                     <input
-                      type="text"
+                      type="number"
+                      onChange={(e) => setMinPrice(e.target.value)}
                       className="w-[50px] rounded-sm p-1 max-lg:w-full focus:outline-none"
                     />
                   </div>
                   <div className="max-lg:bg-white flex max-lg:flex-col lg:justify-between max-lg:mb-2.5 text-[#555] text-[12px] max-lg:max-w-max max-lg:p-1 max-lg:w-1/2">
                     <span className="">
-                      Min price <small>per night</small>
+                      Max price <small>per night</small>
                     </span>
                     <input
-                      type="text"
+                      type="number"
+                      onChange={(e) => setMaxPrice(e.target.value)}
                       className="w-[50px] rounded-sm p-1 max-lg:w-full focus:outline-none"
                     />
                   </div>
@@ -150,13 +166,42 @@ const List = () => {
                   </div>
                 </div>
               </div>
-              <button className="p-2.5 bg-[#0071c2] text-white w-full font-medium rounded-sm">
+              <button
+                onClick={handleClick}
+                className="p-2.5 bg-[#0071c2] text-white w-full font-medium rounded-sm"
+              >
                 Search
               </button>
             </div>
           </div>
           <div className="">
-            <SearchResult />
+            {!data ? (
+              Array.from({ length: 6 }).map((_) => (
+                <div className="flex flex-col">
+                  <Skeleton
+                    variant="rounded"
+                    width={700}
+                    height={200}
+                    className="mb-4"
+                  />
+                </div>
+              ))
+            ) : data.length === 0 ? (
+              <div className="flex flex-col items-center w-full  ml-12">
+                <img
+                  src="https://i.ibb.co/xLQkC4H/9318700.jpg"
+                  alt="no stays available"
+                  width={300}
+                  height={300}
+                />
+                <p className="text-[17px] text-center max-w-[500px]">
+                  We apologize, but we couldn't find any available stays at the
+                  moment. Please try again later or refine your search criteria.
+                </p>
+              </div>
+            ) : (
+              data.map((item) => <SearchResult key={item._id} item={item} />)
+            )}
           </div>
         </div>
       </div>

@@ -41,10 +41,16 @@ router.put("/:id", verifyAdmin, async (req, res, next) => {
 
 //find all hotels
 router.get("/", async (req, res, next) => {
-  try {
-    const Hotels = await Hotel.find();
+  const { min, max, ...others } = req.query;
 
-    res.status(200).json({ message: "Found Hotels!", Hotels });
+  try {
+    const Hotels = await Hotel.find({
+      ...others,
+      cheapestPrice: { $gte: min || 1, $lte: max || 999 },
+    }).limit(req.query.limit);
+
+    res.status(200).json(Hotels);
+    return Hotels;
   } catch (error) {
     next(error);
   }
@@ -60,6 +66,8 @@ router.get("/countByCity", async (req, res, next) => {
     );
 
     res.status(200).json(list);
+
+    return list;
   } catch (error) {
     next(error);
   }
@@ -68,9 +76,32 @@ router.get("/countByCity", async (req, res, next) => {
 //find hotels by Type
 router.get("/countByType", async (req, res, next) => {
   try {
-    const Hotels = await Hotel.find();
+    const hotelCount = await Hotel.countDocuments({ type: "Hotel" });
+    const apartmentCount = await Hotel.countDocuments({ type: "Apartment" });
+    const resortCount = await Hotel.countDocuments({ type: "Resort" });
+    const villaCount = await Hotel.countDocuments({ type: "Villa" });
+    const cabinCount = await Hotel.countDocuments({ type: "Cabin" });
+    const cottageCount = await Hotel.countDocuments({ type: "Cottage" });
+    const vacationhomeCount = await Hotel.countDocuments({
+      type: "Vacation home",
+    });
+    const guesthouseCount = await Hotel.countDocuments({ type: "Guest house" });
+    const motelCount = await Hotel.countDocuments({ type: "Motel" });
 
-    res.status(200).json({ message: "Found Hotels!", Hotels });
+    const data = [
+      { type: "hotel", count: hotelCount },
+      { type: "apartment", count: apartmentCount },
+      { type: "resort", count: resortCount },
+      { type: "villa", count: villaCount },
+      { type: "cabin", count: cabinCount },
+      { type: "cottage", count: cottageCount },
+      { type: "vacation home", count: vacationhomeCount },
+      { type: "guest house", count: guesthouseCount },
+      { type: "motel", count: motelCount },
+    ];
+
+    res.status(200).json(data);
+    return data;
   } catch (error) {
     next(error);
   }
@@ -80,7 +111,7 @@ router.get("/countByType", async (req, res, next) => {
 router.get("/search/:id", async (req, res, next) => {
   try {
     const foundHotel = await Hotel.findById(req.params.id);
-    res.status(200).json({ message: "Found hotel!", foundHotel });
+    res.status(200).json(foundHotel);
   } catch (error) {
     error.message = "Cannot find hotel";
     next(error);

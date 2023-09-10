@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
@@ -19,6 +19,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/searchContext";
 
 const style = {
   position: "absolute",
@@ -57,7 +58,10 @@ const Header = ({ type }) => {
     });
   };
 
+  const { dispatch } = useContext(SearchContext);
+
   const handleSearch = () => {
+    dispatch({ type: "NEW_SEARCH", payload: { destination, date, options } });
     navigate("hotels", { state: { destination, date, options } });
   };
 
