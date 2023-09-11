@@ -1,11 +1,16 @@
 import "./navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { user } = useContext(AuthContext);
+
+  console.log(user);
 
   return (
     <nav className="h-[50px] bg-main flex justify-center overflow-x-hidden">
@@ -13,16 +18,8 @@ const Navbar = () => {
         <Link to="/">
           <span className="font-bold text-2xl max-md:text-xl">UrbanHub</span>
         </Link>
-        <div className="navItems max-lg:hidden text-sm">
-          <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
-            Register
-          </button>
-          <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
-            Login
-          </button>
-        </div>
-        <div className="lg:hidden flex items-center justify-between w-[60px]">
-          <div className="flex-grow">
+        {user ? (
+          <div className="flex gap-2.5 items-center max-lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -37,7 +34,48 @@ const Navbar = () => {
                 d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
               />
             </svg>
+            <p>Hello, {user.firstname}</p>
+            <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
+              Sign out
+            </button>
           </div>
+        ) : (
+          <div className="navItems max-lg:hidden text-sm">
+            <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
+              Register
+            </button>
+            <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
+              Login
+            </button>
+          </div>
+        )}
+        <div
+          className={`lg:hidden flex items-center justify-between ${
+            user ? "max-md:w-[120px] gap-1 w-[130px]" : "w-[60px]"
+          }`}
+        >
+          {user && (
+            <>
+              <div className="">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <p className="whitespace-nowrap text-sm">Hi, {user.firstname}</p>
+            </>
+          )}
+
           <div className="ml-0 pl-0">
             <FontAwesomeIcon
               icon={faBars}
@@ -71,12 +109,20 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col w-full px-6 mt-10">
               <div className="w-full gap-2 flex justify-center items-center mb-6 text-sm">
-                <button className="navButton ml-5 border border-main py-1.5 px-2.5 cursor-pointer text-main bg-white rounded-sm">
-                  Login
-                </button>
-                <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-white bg-main rounded-sm">
-                  Register
-                </button>
+                {user ? (
+                  <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-white bg-main rounded-sm">
+                    Sign out
+                  </button>
+                ) : (
+                  <>
+                    <button className="navButton ml-5 border border-main py-1.5 px-2.5 cursor-pointer text-main bg-white rounded-sm">
+                      Login
+                    </button>
+                    <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-white bg-main rounded-sm">
+                      Register
+                    </button>
+                  </>
+                )}
               </div>
               <h1 className="font-bold text-lg">More</h1>
               <div className="mt-5">

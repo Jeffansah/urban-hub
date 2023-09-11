@@ -12,22 +12,31 @@ const router = express.Router();
 //register route
 
 router.post("/register", async (req, res, next) => {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
   const username = req.body.username;
-  const password = req.body.password;
+  const userPassword = req.body.password;
   const email = req.body.email;
 
   try {
     const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(password, salt);
+    const hashedPassword = bcrypt.hashSync(userPassword, salt);
 
     const newUser = new User({
+      firstname,
+      lastname,
       username,
       email,
       password: hashedPassword,
     });
 
     await newUser.save();
-    res.status(201).json({ message: "User created successfully!", newUser });
+
+    const { password, isAdmin, ...userDetails } = newUser._doc;
+
+    res
+      .status(201)
+      .json({ message: "User created successfully!", ...userDetails });
   } catch (error) {
     next(error);
   }

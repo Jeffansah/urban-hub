@@ -20,6 +20,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/searchContext";
+import { AuthContext } from "../../context/authContext";
 
 const style = {
   position: "absolute",
@@ -59,6 +60,8 @@ const Header = ({ type }) => {
   };
 
   const { dispatch } = useContext(SearchContext);
+
+  const { user } = useContext(AuthContext);
 
   const handleSearch = () => {
     dispatch({ type: "NEW_SEARCH", payload: { destination, date, options } });
@@ -103,9 +106,11 @@ const Header = ({ type }) => {
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free UrbanHub account
             </p>
-            <button className="bg-[#0071c2] text-white font-medium p-2.5 cursor-pointer max-md:mt-2 max-md:text-sm">
-              Sign in / Register
-            </button>
+            {!user && (
+              <button className="bg-[#0071c2] text-white font-medium p-2.5 cursor-pointer max-md:mt-2 max-md:text-sm">
+                Sign in / Register
+              </button>
+            )}
             <div className=" bg-white lg:border-[3px] lg:border-[#febb02] flex max-lg:flex-col lg:items-center lg:justify-around lg:py-2.5 px-0 rounded-md lg:absolute lg:bottom-[-25px] w-full lg:max-w-5xl max-lg:mt-5 max-lg:text-sm">
               <div className="flex items-center gap-2.5 max-lg:w-full max-lg:border-[3px] max-lg:border-[#febb02] max-lg:p-3 max-lg:border-t-[6px]">
                 <FontAwesomeIcon icon={faBed} className="text-gray-500" />

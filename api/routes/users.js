@@ -5,19 +5,6 @@ import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-//check authenticated user
-// router.get("/checkauthentication", verifyToken, (req, res, next) => {
-//   res.status(200).json({ message: "User Authenticated!" });
-// });
-
-// router.get("/checkuser/:id", verifyUser, (req, res, next) => {
-//   res.status(200).json({ message: "You are Authenticated!" });
-// });
-
-// router.get("/checkadmin/:id", verifyAdmin, (req, res, next) => {
-//   res.status(200).json({ message: "Hello Admin! You are Authenticated!" });
-// });
-
 //update users
 router.put("/:id", verifyUser, async (req, res, next) => {
   try {
