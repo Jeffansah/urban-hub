@@ -10,7 +10,7 @@ const SearchResult = ({ item }) => {
       <img
         src={item.photos[0].includes("https") ? item.photos[0] : defaultImg}
         alt="stay"
-        className="max-lg:w-[150px] w-[200px]  object-cover rounded-sm max-h-[210px] max"
+        className="max-lg:w-[150px] w-[200px]  object-cover rounded-sm max-h-[210px] "
       />
       <div className="flex w-[600px] max-md:text-xs">
         <div className="flex flex-col gap-1.5 lg:gap-2.5 flex-grow">

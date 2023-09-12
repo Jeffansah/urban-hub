@@ -1,5 +1,6 @@
 import express from "express";
 import Hotel from "../models/Hotel.js";
+import Room from "../models/Room.js";
 import { createError } from "../utils/error.js";
 import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
@@ -102,6 +103,19 @@ router.get("/countByType", async (req, res, next) => {
 
     res.status(200).json(data);
     return data;
+  } catch (error) {
+    next(error);
+  }
+});
+
+//get hotel rooms
+router.get("/room/:id", async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    const list = await Promise.all(
+      hotel.rooms.map((room) => Room.findById(room))
+    );
+    res.status(200).json(list);
   } catch (error) {
     next(error);
   }

@@ -35,10 +35,12 @@ const Header = ({ type }) => {
   const [date, setDate] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
       key: "selection",
     },
   ]);
+
+  console.log(date);
 
   const [openDateModal, setOpenDateModal] = useState(false);
   const [openOptionsModal, setOpenOptionsModal] = useState(false);
@@ -72,7 +74,7 @@ const Header = ({ type }) => {
     <header className="bg-main text-white flex justify-center relative text-sm">
       <div
         className={`w-full max-w-5xl mt-5 mx-0 ${
-          type !== "list" && "lg:mb-[100px] max-lg:mb-6"
+          type !== "list" && "lg:mb-[100px] max-lg:mb-6 max-lg:px-2"
         }`}
       >
         <div className="flex gap-10 mb-[50px] max-md:overflow-x-scroll max-md:scrollbar-hide max-md:whitespace-nowrap max-lg:px-3 max-sm:mb-[20px]">

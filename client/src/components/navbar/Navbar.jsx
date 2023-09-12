@@ -8,13 +8,21 @@ import { AuthContext } from "../../context/authContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, loading, error, dispatch } = useContext(AuthContext);
 
-  console.log(user);
+  const handleClick = async (e) => {
+    e.preventDefault();
+    dispatch({ type: "LOGOUT_START" });
+    try {
+      dispatch({ type: "LOGOUT_SUCCESS" });
+    } catch (error) {
+      dispatch({ type: "LOGOUT_FAILURE" });
+    }
+  };
 
   return (
     <nav className="h-[50px] bg-main flex justify-center overflow-x-hidden">
-      <div className="w-full max-w-5xl text-white flex items-center justify-between max-lg:px-3">
+      <div className="w-full max-w-5xl text-white flex items-center justify-between max-lg:px-5">
         <Link to="/">
           <span className="font-bold text-2xl max-md:text-xl">UrbanHub</span>
         </Link>
@@ -35,23 +43,30 @@ const Navbar = () => {
               />
             </svg>
             <p>Hello, {user.firstname}</p>
-            <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
+            <button
+              onClick={handleClick}
+              className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white"
+            >
               Sign out
             </button>
           </div>
         ) : (
           <div className="navItems max-lg:hidden text-sm">
-            <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
-              Register
-            </button>
-            <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
-              Login
-            </button>
+            <Link to="/auth">
+              <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
+                Register
+              </button>
+            </Link>
+            <Link to="/auth">
+              <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-main bg-white">
+                Login
+              </button>
+            </Link>
           </div>
         )}
         <div
-          className={`lg:hidden flex items-center justify-between ${
-            user ? "max-md:w-[120px] gap-1 w-[130px]" : "w-[60px]"
+          className={`lg:hidden flex justify-between ${
+            user ? "max-md:w-[120px] gap-1 w-[130px]" : ""
           }`}
         >
           {user && (
@@ -110,17 +125,24 @@ const Navbar = () => {
             <div className="flex flex-col w-full px-6 mt-10">
               <div className="w-full gap-2 flex justify-center items-center mb-6 text-sm">
                 {user ? (
-                  <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-white bg-main rounded-sm">
+                  <button
+                    onClick={handleClick}
+                    className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-white bg-main rounded-sm"
+                  >
                     Sign out
                   </button>
                 ) : (
                   <>
-                    <button className="navButton ml-5 border border-main py-1.5 px-2.5 cursor-pointer text-main bg-white rounded-sm">
-                      Login
-                    </button>
-                    <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-white bg-main rounded-sm">
-                      Register
-                    </button>
+                    <Link to="/auth">
+                      <button className="navButton ml-5 border border-main py-1.5 px-2.5 cursor-pointer text-main bg-white rounded-sm">
+                        Login
+                      </button>
+                    </Link>
+                    <Link to="/auth">
+                      <button className="navButton ml-5 border-none py-1.5 px-2.5 cursor-pointer text-white bg-main rounded-sm">
+                        Register
+                      </button>
+                    </Link>
                   </>
                 )}
               </div>

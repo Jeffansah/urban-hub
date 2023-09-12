@@ -55,6 +55,7 @@ const List = () => {
                   <input
                     type="text"
                     placeholder={destination}
+                    onChange={(e) => setDestination(e.target.value)}
                     className="h-[30px] p-[5px] text-xs placeholder:text-xs placeholder:text-black rounded-sm w-full focus:outline-none"
                   />
                 </div>
@@ -200,7 +201,9 @@ const List = () => {
                 </p>
               </div>
             ) : (
-              data.map((item) => <SearchResult key={item._id} item={item} />)
+              data.map((item) => (
+                <SearchResult key={item._id} item={item} date={date} />
+              ))
             )}
           </div>
         </div>

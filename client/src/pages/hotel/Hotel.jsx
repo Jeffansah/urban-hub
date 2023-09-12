@@ -10,22 +10,29 @@ import {
 import hotelPhotos from "../../data/hotelData";
 import MailList from "../../components/maillist/MailList";
 import Footer from "../../components/footer/Footer";
-import { useState, useEffect, useRef, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { Skeleton } from "@mui/material";
 import { SearchContext } from "../../context/searchContext";
+import { AuthContext } from "../../context/authContext";
+import Reserve from "../../components/reserve/Reserve";
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [openReserveModal, setOpenReserveModal] = useState();
 
-  const location = useLocation();
+  const location = useLocation(false);
   const hotelId = location.pathname.split("/")[2];
 
   const { data, loading, error } = useFetch(`/hotels/search/${hotelId}`);
 
   const { date, options } = useContext(SearchContext);
+
+  const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
@@ -47,6 +54,12 @@ const Hotel = () => {
 
   const handleSliderClick = (event) => {
     event.stopPropagation();
+  };
+
+  const handleClick = () => {
+    if (user) {
+      setOpenReserveModal(!openReserveModal);
+    } else navigate("/auth");
   };
 
   return (
@@ -107,7 +120,10 @@ const Hotel = () => {
               <h1 className="text-2xl font-semibold max-lg:font-bold max-lg:pl-3">
                 {data.name}
               </h1>
-              <button className="py-2.5 px-5 bg-[#0071c2] text-white text-sm rounded-[5px] max-lg:rounded-r-none">
+              <button
+                onClick={handleClick}
+                className="py-2.5 px-5 bg-[#0071c2] text-white text-sm rounded-[5px] max-lg:rounded-r-none"
+              >
                 Reserve or Book Now!
               </button>
             </div>
@@ -207,7 +223,7 @@ const Hotel = () => {
               </div>
             </div>
             <div className="flex max-md:flex-col justify-between gap-5 mt-5 max-lg:mt-3 w-full  md:px-7 lg:px-0">
-              <div className="w-3/4 max-lg:w-full max-md:px-3 max-lg:max-w-[370px]">
+              <div className="w-3/4 max-lg:w-full max-md:px-3 max-lg:max-w-[450px]">
                 <h1 className="text-xl font-semibold max-lg:text-lg">
                   {data.title}
                 </h1>
@@ -227,9 +243,12 @@ const Hotel = () => {
                   <b className="font-bold text-lg">
                     ${data.cheapestPrice * days * options.room}
                   </b>
-                  ({days} nights)
+                  ({days} night{days !== 1 ? "s" : ""})
                 </h2>
-                <button className="py-2.5 px-5 bg-[#0071c2] text-white text-sm rounded-[5px]">
+                <button
+                  onClick={handleClick}
+                  className="py-2.5 px-5 bg-[#0071c2] text-white text-sm rounded-[5px]"
+                >
                   Reserve or Book Now!
                 </button>
               </div>
@@ -238,6 +257,9 @@ const Hotel = () => {
         )}
         <MailList />
         <Footer />
+        {openReserveModal && (
+          <Reserve setOpen={setOpenReserveModal} hotelId={hotelId} />
+        )}
       </div>
     </div>
   );

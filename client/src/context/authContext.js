@@ -28,11 +28,23 @@ const AuthReducer = (state, action) => {
         loading: false,
         error: action.payload,
       };
-    case "LOGOUT":
+    case "LOGOUT_START":
+      return {
+        user: null,
+        loading: true,
+        error: null,
+      };
+    case "LOGOUT_SUCCESS":
+      return {
+        user: action.payload,
+        loading: false,
+        error: null,
+      };
+    case "LOGOUT_FAILURE":
       return {
         user: null,
         loading: false,
-        error: null,
+        error: action.payload,
       };
     case "REGISTER_START":
       return {

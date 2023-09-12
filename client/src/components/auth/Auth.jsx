@@ -19,7 +19,7 @@ const Login = () => {
     password: undefined,
   });
 
-  const { user, loading, error, dispatch, register } = useContext(AuthContext);
+  const { user, loading, error, dispatch } = useContext(AuthContext);
 
   const [clicked, setClicked] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
@@ -70,12 +70,12 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="flex justify-center pt-44 min-h-screen bg-gray-100">
-        <div className="bg-white p-8 rounded-lg w-full max-w-md">
-          <h2 className="text-2xl font-semibold text-center mb-4">
-            {isRegistering ? "Register" : "Login"}
+      <div className="flex justify-center pt-10 md:pt-24 lg:pt-44 min-h-screen bg-white">
+        <div className=" p-8 rounded-lg w-full max-w-md">
+          <h2 className="text-2xl font-semibold text-center mb-6 max-md:text-xl">
+            {isRegistering ? "Create an account" : "Login into your account"}
           </h2>
-          <form>
+          <form className=" max-md:text-sm">
             {isRegistering && (
               <>
                 <div className="mb-4">
@@ -179,7 +179,7 @@ const Login = () => {
                 : error.message}
             </div>
           )}
-          <div className="mt-2 text-center">
+          <div className="mt-2 text-center max-md:text-sm">
             <button
               onClick={() => setIsRegistering(!isRegistering)}
               className="text-[#0071c2] hover:underline focus:outline-none"

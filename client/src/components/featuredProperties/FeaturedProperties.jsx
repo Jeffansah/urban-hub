@@ -32,7 +32,7 @@ const FeaturedProperties = () => {
                       {property.name}
                     </span>
                     <span className="font-light text-sm max-md:text-xs">
-                      {property.city} {property.country}
+                      {property.city}, {property.country}
                     </span>
                     <div className="flex items-center">
                       <span className="font-light text-xs mr-1 text-gray-600 max-lg:text-[11px]">
