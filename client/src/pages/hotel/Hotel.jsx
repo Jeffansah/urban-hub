@@ -111,9 +111,48 @@ const Hotel = () => {
           </div>
         )}
         {!data ? (
-          <div className="w-full max-w-5xl flex flex-col gap-2.5">
-            <Skeleton />
-          </div>
+          <>
+            <div className="w-full max-w-5xl flex flex-col gap-2.5 max-lg:hidden">
+              <div className="flex justify between">
+                <Skeleton width={200} height={50} className="ml-5" />
+                <Skeleton width={200} height={50} />
+              </div>
+              <Skeleton width={160} height={50} className="ml-5" />
+              <Skeleton width={160} height={50} className="ml-5" />
+              <div className="flex flex-wrap gap-1 max-lg:hidden p-5">
+                {Array.from({ length: 6 }).map((item) => (
+                  <Skeleton width={400} height={400} />
+                ))}
+                <Skeleton width={200} height={50} />
+                <Skeleton width={600} height={300} />
+              </div>
+            </div>
+            <div className="w-full max-w-5xl flex flex-col gap-2.5 max-md:hidden">
+              <div className="flex justify between">
+                <Skeleton width={200} height={50} className="ml-5" />
+                <Skeleton width={200} height={50} />
+              </div>
+              <Skeleton width={160} height={50} className="ml-5" />
+              <Skeleton width={160} height={50} className="ml-5" />
+              <div className="flex flex-wrap gap-1 max-lg:hidden p-5">
+                <Skeleton width={1000} height={1000} />
+              </div>
+            </div>
+            <div className="w-full max-w-5xl flex flex-col gap-2.5 md:hidden">
+              <div className="flex justify between">
+                <Skeleton width={200} height={50} className="ml-5" />
+                <Skeleton width={200} height={50} />
+              </div>
+              <Skeleton width={160} height={50} className="ml-5" />
+              <Skeleton width={160} height={50} className="ml-5" />
+              <div className="flex flex-wrap gap-1 max-lg:hidden p-5">
+                <Skeleton width={700} height={600} />
+              </div>
+              <div className="flex flex-wrap gap-1 max-lg:hidden p-5">
+                <Skeleton width={500} height={500} />
+              </div>
+            </div>
+          </>
         ) : (
           <div className="w-full max-w-5xl flex flex-col gap-2.5">
             <div className="flex w-full justify-between items-center">
@@ -122,7 +161,7 @@ const Hotel = () => {
               </h1>
               <button
                 onClick={handleClick}
-                className="py-2.5 px-5 bg-[#0071c2] text-white text-sm rounded-[5px] max-lg:rounded-r-none"
+                className="py-2.5 px-5 bg-[#0071c2] text-white text-sm rounded-[5px] max-lg:rounded-r-none whitespace-nowrap"
               >
                 Reserve or Book Now!
               </button>
@@ -146,7 +185,9 @@ const Hotel = () => {
                     <div className="w-[33%]">
                       <img
                         onClick={() => handleOpen(index)}
-                        src={photo}
+                        src={
+                          photo || "https://i.ibb.co/SPd3W9t/placeholder.jpg"
+                        }
                         alt={index}
                         className="w-full object-cover cursor-pointer lg:h-[232.3px]"
                       />
@@ -188,7 +229,8 @@ const Hotel = () => {
                   <img
                     src={
                       data.photos[0].includes("https")
-                        ? data.photos[slideNumber]
+                        ? data.photos[slideNumber] ||
+                          "https://i.ibb.co/SPd3W9t/placeholder.jpg"
                         : hotelPhotos[slideNumber].src
                     }
                     alt=""

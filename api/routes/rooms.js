@@ -48,6 +48,23 @@ router.put("/:id", verifyAdmin, async (req, res, next) => {
   }
 });
 
+//update avaialable rooms
+router.put("/availability/:id", async (req, res, next) => {
+  try {
+    await Room.updateOne(
+      { "roomNumbers._id": req.params.id },
+      {
+        $push: {
+          "roomNumbers.$.unavailableDates": req.body.date,
+        },
+      }
+    );
+    res.status(200).json("Room status has been updated.");
+  } catch (err) {
+    next(err);
+  }
+});
+
 //delete room
 router.delete("/:hotelid/:id", verifyAdmin, async (req, res, next) => {
   const hotelId = req.params.hotelid;

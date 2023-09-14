@@ -40,8 +40,6 @@ const Header = ({ type }) => {
     },
   ]);
 
-  console.log(date);
-
   const [openDateModal, setOpenDateModal] = useState(false);
   const [openOptionsModal, setOpenOptionsModal] = useState(false);
   const [options, setOptions] = useState({
@@ -121,7 +119,9 @@ const Header = ({ type }) => {
                     setOpenOptionsModal(false);
                     setOpenDateModal(false);
                   }}
-                  onChange={(e) => setDestination(e.target.value)}
+                  onChange={(e) => {
+                    setDestination(e.target.value);
+                  }}
                   type="text"
                   placeholder="Where are you going?"
                   className="lg:border-none  outline-none  text-gray-600 placeholder:text-gray-600 focus:placeholder:text-gray-400"

@@ -2,9 +2,12 @@ import React from "react";
 import propertyData from "../../data/propertyData";
 import useFetch from "../../hooks/useFetch";
 import { Skeleton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch("/hotels?features=true");
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -18,6 +21,7 @@ const FeaturedProperties = () => {
               data.map((property, index) => (
                 <div
                   key={index}
+                  onClick={() => navigate(`/hotels/${property._id}`)}
                   className="flex-1 shadow-md rounded-[10px] overflow-hidden cursor-pointer hover:shadow-lg"
                 >
                   <div className="max-lg:w-52 w-64 lg:h-52 overflow-hidden">

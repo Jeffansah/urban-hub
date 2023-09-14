@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const defaultImg =
   "https://cf.bstatic.com/xdata/images/hotel/square600/32087410.webp?k=5ba581c5195ca4c5eedd0f4aa9628cf05b98aaa35bf7aaa0cfa010b95590a6c4&o=";
@@ -13,7 +13,7 @@ const SearchResult = ({ item }) => {
         className="max-lg:w-[150px] w-[200px]  object-cover rounded-sm max-h-[210px] "
       />
       <div className="flex w-[600px] max-md:text-xs">
-        <div className="flex flex-col gap-1.5 lg:gap-2.5 flex-grow">
+        <div className="flex flex-col gap-1.5 lg:gap-2.5 flex-grow max-md:relative">
           <h1 className="md:text-[20px] text-[#0071c2] max-lg:whitespace-nowrap max-md:text-sm lg:max-w-[300px]">
             {item.name}
           </h1>
@@ -40,13 +40,19 @@ const SearchResult = ({ item }) => {
             You can cancel later, so lock in this great price today!
           </span>
           <div className="text-right flex flex-col gap-[5px] md:hidden">
+            <Link to={`/hotels/${item._id}`}>
+              <button className="bg-[#0071c2] text-white font-bold py-1 px-[5px] rounded-[5px] md:hidden absolute bottom-7 left-0">
+                See availability
+              </button>
+            </Link>
+
             <span className="lg:text-2xl max-lg:text-xl">
               ${item.cheapestPrice}
             </span>
             <span className="text-[12px] text-gray-500">
               Includes taxes and fees
             </span>
-            <Link to={`hotels/${item._id}`}>
+            <Link to={`/hotels/${item._id}`}>
               <button className="bg-[#0071c2] text-white font-bold py-2.5 px-[5px] rounded-[5px] max-md:hidden">
                 See availability
               </button>
