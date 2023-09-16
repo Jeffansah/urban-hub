@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 import ConfettiExplosion from "react-confetti-explosion";
 
 const Reserve = ({ setOpen, hotelId }) => {
-  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
+  const { data, loading, error } = useFetch(
+    `https://urbanhub.onrender.com/api/hotels/room/${hotelId}`
+  );
 
   const [selectedRooms, setSelectedRooms] = useState([]);
 
@@ -59,9 +61,12 @@ const Reserve = ({ setOpen, hotelId }) => {
     try {
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const response = axios.put(`/rooms/availability/${roomId}`, {
-            date: allDates,
-          });
+          const response = axios.put(
+            `https://urbanhub.onrender.com/api/rooms/availability/${roomId}`,
+            {
+              date: allDates,
+            }
+          );
         })
       );
       setIsBooked(true);

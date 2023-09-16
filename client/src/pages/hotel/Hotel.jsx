@@ -27,11 +27,9 @@ const Hotel = () => {
   const location = useLocation(false);
   const hotelId = location.pathname.split("/")[2];
 
-  const load = true;
-
-  const { data, loading, error } = useFetch(`/hotels/search/${hotelId}`);
-
-  // const { date, options } = useContext(SearchContext);
+  const { data, loading, error } = useFetch(
+    `https://urbanhub.onrender.com/api/hotels/search/${hotelId}`
+  );
 
   const { user } = useContext(AuthContext);
 

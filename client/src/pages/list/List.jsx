@@ -25,7 +25,7 @@ const List = () => {
   const [maxPrice, setMaxPrice] = useState(undefined);
 
   const { data, loading, error, reFetchData } = useFetch(
-    `/hotels?city=${
+    `https://urbanhub.onrender.com/api/hotels?city=${
       destination.charAt(0).toUpperCase() + destination.slice(1)
     }&min=${minPrice || 0}&max=${maxPrice || 999}`
   );
