@@ -30,15 +30,6 @@ mongoose.connection.on("disconnected", () => {
 
 // MIDDLEWARES //
 
-//configure cors options
-const corsOptions = {
-  origin: "http://localhost:3001",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-};
-
-//enable cors
-app.use(cors(corsOptions));
-
 //parse-cookies
 app.use(cookierParser());
 
