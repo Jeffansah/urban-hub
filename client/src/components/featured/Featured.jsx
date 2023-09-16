@@ -12,7 +12,12 @@ const Featured = () => {
     <div className="lg:w-full max-w-5xl max:lg-grid max-lg:grid-cols-2 md:flex md:justify-between md:gap-5 z-1">
       {!data
         ? Array.from({ length: 3 }).map((_) => (
-            <Skeleton variant="rounded" width={300} height={250} />
+            <Skeleton
+              variant="rounded"
+              width={300}
+              height={250}
+              className="max-md:mb-2"
+            />
           ))
         : data &&
           featuredData.map((item, index) => (
