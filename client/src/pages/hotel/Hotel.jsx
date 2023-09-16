@@ -125,7 +125,7 @@ const Hotel = () => {
             <div className="w-full max-w-5xl flex flex-col gap-2.5 max-lg:hidden">
               <div className="flex justify between">
                 <Skeleton width={200} height={50} className="ml-5" />
-                <Skeleton width={200} height={50} />
+                <Skeleton width={200} height={50} className="max-md:hidden" />
               </div>
               <Skeleton width={160} height={50} className="ml-5" />
               <Skeleton width={160} height={50} className="ml-5" />
