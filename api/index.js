@@ -6,6 +6,7 @@ import roomsRoute from "./routes/rooms.js";
 import usersRoute from "./routes/users.js";
 import hotelsRoute from "./routes/hotels.js";
 import cookierParser from "cookie-parser";
+import cors from "cors";
 
 //instances
 dotenv.config();
@@ -28,6 +29,15 @@ mongoose.connection.on("disconnected", () => {
 });
 
 // MIDDLEWARES //
+
+//configure cors options
+const corsOptions = {
+  origin: "http://localhost:3001",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+
+//enable cors
+app.use(cors(corsOptions));
 
 //parse-cookies
 app.use(cookierParser());
