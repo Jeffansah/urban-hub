@@ -11,7 +11,7 @@ const Footer = () => {
             </li>
             {list.items.map((item, itemIndex) => (
               <li
-                className="mb-2.5 text-gray-800 cursor-pointer"
+                className="mb-2.5 text-gray-800 cursor-pointer hover:text-[#0071c2]"
                 key={itemIndex}
               >
                 {item}

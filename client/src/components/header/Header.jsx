@@ -123,7 +123,7 @@ const Header = ({ type }) => {
                     setDestination(e.target.value);
                   }}
                   type="text"
-                  placeholder="Where are you going?"
+                  placeholder="Search stays by city"
                   className="lg:border-none  outline-none  text-gray-600 placeholder:text-gray-600 focus:placeholder:text-gray-400"
                 />
               </div>

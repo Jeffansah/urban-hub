@@ -34,9 +34,7 @@ router.post("/register", async (req, res, next) => {
 
     const { password, isAdmin, ...userDetails } = newUser._doc;
 
-    res
-      .status(201)
-      .json({ message: "User created successfully!", ...userDetails });
+    res.status(201).json({ message: "User created successfully!" });
   } catch (error) {
     next(error);
   }
@@ -70,7 +68,7 @@ router.post("/login", async (req, res, next) => {
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
-      .json({ message: "successfully signed in!", ...userDetails });
+      .json({ message: "successfully signed in!", ...userDetails, isAdmin });
   } catch (error) {
     next(error);
   }

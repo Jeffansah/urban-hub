@@ -25,7 +25,9 @@ const SearchResult = ({ item }) => {
               {item.ratingText || "Excellent"}
             </span>
           </div>
-          <span className="text-[12px]">{item.distance}</span>
+          <span className="text-[12px]">
+            {item.distance}, {item.city}, {item.country}
+          </span>
           <span className="text-[12px] bg-[#008009] text-white max-w-max p-[3px] rounded-[5px] py-[2px]">
             Free airport taxi
           </span>

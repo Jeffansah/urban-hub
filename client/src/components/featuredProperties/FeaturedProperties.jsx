@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import propertyData from "../../data/propertyData";
 import useFetch from "../../hooks/useFetch";
 import { Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/searchContext";
 
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch("/hotels?features=true");

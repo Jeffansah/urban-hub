@@ -10,7 +10,7 @@ import {
 import hotelPhotos from "../../data/hotelData";
 import MailList from "../../components/maillist/MailList";
 import Footer from "../../components/footer/Footer";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { Skeleton } from "@mui/material";
@@ -22,26 +22,38 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openReserveModal, setOpenReserveModal] = useState();
+  const [days, setDays] = useState(null);
 
   const location = useLocation(false);
   const hotelId = location.pathname.split("/")[2];
 
+  const load = true;
+
   const { data, loading, error } = useFetch(`/hotels/search/${hotelId}`);
 
-  const { date, options } = useContext(SearchContext);
+  // const { date, options } = useContext(SearchContext);
 
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
-  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
-  function dayDifference(date1, date2) {
-    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
-    return diffDays;
-  }
+  const date = JSON.parse(localStorage.getItem("date"));
+  const options = JSON.parse(localStorage.getItem("options"));
 
-  const days = dayDifference(date[0].endDate, date[0].startDate);
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+
+  useEffect(() => {
+    function dayDifference(date1, date2) {
+      const timeDiff = Math.abs(
+        new Date(date2).getTime() - new Date(date1).getTime()
+      );
+      const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+      return diffDays;
+    }
+    if (date.length !== 0 && date[0].startDate && date[0].endDate) {
+      setDays(dayDifference(new Date(date[0].endDate), date[0].startDate));
+    }
+  }, []);
 
   const handleOpen = (index) => {
     setSlideNumber(index);
@@ -119,9 +131,9 @@ const Hotel = () => {
               </div>
               <Skeleton width={160} height={50} className="ml-5" />
               <Skeleton width={160} height={50} className="ml-5" />
-              <div className="flex flex-wrap gap-1 max-lg:hidden p-5">
+              <div className="flex  gap-1 max-lg:hidden p-5">
                 {Array.from({ length: 6 }).map((item) => (
-                  <Skeleton width={400} height={400} />
+                  <Skeleton width={300} height={400} />
                 ))}
                 <Skeleton width={200} height={50} />
                 <Skeleton width={600} height={300} />
@@ -135,7 +147,7 @@ const Hotel = () => {
               <Skeleton width={160} height={50} className="ml-5" />
               <Skeleton width={160} height={50} className="ml-5" />
               <div className="flex flex-wrap gap-1 max-lg:hidden p-5">
-                <Skeleton width={1000} height={1000} />
+                <Skeleton width={1000} height={100} />
               </div>
             </div>
             <div className="w-full max-w-5xl flex flex-col gap-2.5 md:hidden">
@@ -283,7 +295,7 @@ const Hotel = () => {
                 </span>
                 <h2 className="font-light">
                   <b className="font-bold text-lg">
-                    ${data.cheapestPrice * days * options.room}
+                    ${data.cheapestPrice * days * (options.room || 1)}
                   </b>
                   ({days} night{days !== 1 ? "s" : ""})
                 </h2>

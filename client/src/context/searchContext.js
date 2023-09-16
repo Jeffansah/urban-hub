@@ -1,12 +1,17 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 const INITIAL_STATE = {
-  city: undefined,
-  date: [],
+  destination: undefined,
+  date: [
+    {
+      startDate: new Date(),
+      endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+    },
+  ],
   options: {
-    adult: undefined,
-    children: undefined,
-    room: undefined,
+    adult: 1,
+    children: 0,
+    room: 1,
   },
 };
 
@@ -26,10 +31,18 @@ const SearchReducer = (state, action) => {
 export const SearchContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE);
 
+  useEffect(() => {
+    localStorage.setItem("date", JSON.stringify(state.date));
+  }, [state.date]);
+
+  useEffect(() => {
+    localStorage.setItem("options", JSON.stringify(state.options));
+  }, [state.options]);
+
   return (
     <SearchContext.Provider
       value={{
-        city: state.city,
+        destination: state.destination,
         date: state.date,
         options: state.options,
         dispatch,

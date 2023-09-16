@@ -30,7 +30,7 @@ const Featured = () => {
                   {item.city}
                 </h1>
                 <h2 className="font-medium lg:text-xl max-md:text-sm md:text-lg">
-                  {data[index]} properties
+                  {data[index]} propert{data[index] === 1 ? "y" : "ies"}
                 </h2>
               </div>
             </div>

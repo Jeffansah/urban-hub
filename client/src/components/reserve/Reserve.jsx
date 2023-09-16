@@ -17,9 +17,6 @@ const Reserve = ({ setOpen, hotelId }) => {
   const { date } = useContext(SearchContext);
 
   const navigate = useNavigate();
-
-  console.log(date);
-
   const getDatesInRange = (start, end) => {
     const startDate = new Date(start);
 
@@ -103,6 +100,17 @@ const Reserve = ({ setOpen, hotelId }) => {
             </h2>
             {!data ? (
               <div className="text-gray-600 text-center">Loading rooms...</div>
+            ) : data.length === 0 ? (
+              <div className="flex flex-col items-center justify-center gap-2.5">
+                <img
+                  src="https://i.ibb.co/QY3FsrX/Curious-rafiki.png"
+                  alt="no-rooms"
+                  className="lg:w-[18rem] lg:h-[18rem] max-md:w-[13rem] max-md:h-[13rem]"
+                />
+                <p className="text-gray-800 max-lg:text-sm">
+                  Sorry, No rooms available for this date
+                </p>
+              </div>
             ) : (
               data.map((item) => (
                 <div
