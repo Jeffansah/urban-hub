@@ -3,7 +3,9 @@ import propertyData from "../../data/propertyList";
 import useFetch from "../../hooks/useFetch";
 
 const PropertyList = () => {
-  const { data, loading, error } = useFetch("/hotels/countByType");
+  const { data, loading, error } = useFetch(
+    "https://urbanhub.onrender.com/api/hotels/countByType"
+  );
 
   return (
     <>

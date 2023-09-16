@@ -42,7 +42,10 @@ const Login = () => {
     setClicked(true);
     dispatch({ type: "LOGIN_START" });
     try {
-      const response = await axios.post("/auth/login", loginCredentials);
+      const response = await axios.post(
+        "https://urbanhub.onrender.com/api/auth/login",
+        loginCredentials
+      );
       dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
       setTimeout(() => {
         navigate("/");
@@ -57,7 +60,10 @@ const Login = () => {
     setClicked(true);
     dispatch({ type: "REGISTER_START" });
     try {
-      const response = await axios.post("/auth/register", registerCredentials);
+      const response = await axios.post(
+        "https://urbanhub.onrender.com/api/auth/register",
+        registerCredentials
+      );
       dispatch({ type: "REGISTER_SUCCESS", payload: response.data });
       setTimeout(() => {
         navigate("/");

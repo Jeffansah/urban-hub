@@ -5,7 +5,7 @@ import Skeleton from "@mui/material/Skeleton";
 
 const Featured = () => {
   const { data, loading, error } = useFetch(
-    "/hotels/countByCity?cities=Amsterdam,London,Austin"
+    "https://urbanhub.onrender.com/api/hotels/countByCity?cities=Amsterdam,London,Austin"
   );
 
   return (

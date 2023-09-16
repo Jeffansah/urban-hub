@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/searchContext";
 
 const FeaturedProperties = () => {
-  const { data, loading, error } = useFetch("/hotels?features=true");
+  const { data, loading, error } = useFetch(
+    "https://urbanhub.onrender.com/api/hotels?features=true"
+  );
 
   const navigate = useNavigate();
 
