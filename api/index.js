@@ -64,7 +64,9 @@ app.use((error, req, res, next) => {
   });
 });
 
+//connect to mongodb database
+connectToDatabase();
+
 app.listen(port, () => {
-  connectToDatabase();
   console.log(`listening on port: ${port}`);
 });
