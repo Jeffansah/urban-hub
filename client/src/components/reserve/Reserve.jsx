@@ -105,7 +105,7 @@ const Reserve = ({ setOpen, hotelId }) => {
             </h2>
             {!data ? (
               <div className="text-gray-600 text-center">Loading rooms...</div>
-            ) : data.length === 0 || typeof data[0] !== object ? (
+            ) : data.length === 0 || typeof data[0] !== "object" ? (
               <div className="flex flex-col items-center justify-center gap-2.5">
                 <img
                   src="https://i.ibb.co/QY3FsrX/Curious-rafiki.png"
