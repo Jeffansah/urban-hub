@@ -10,7 +10,7 @@ const DiscountCard = () => {
           className="w-40"
         />
       </div>
-      <div className="flex flex-col mt-8 max-w-md max-sm:max-w-xs">
+      <div className="flex flex-col md:mt-8 max-w-md max-sm:max-w-xs">
         <h1 className="font-bold text-2xl">
           Discover great deals around the world
         </h1>
