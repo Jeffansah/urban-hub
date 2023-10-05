@@ -56,7 +56,7 @@ const List = () => {
                     type="text"
                     placeholder={destination}
                     onChange={(e) => setDestination(e.target.value)}
-                    className="h-[30px] p-[5px] text-xs placeholder:text-xs placeholder:text-black rounded-sm w-full focus:outline-none"
+                    className="h-[30px] p-[5px] text-xs placeholder:text-xs placeholder:text-gray-700 rounded-sm w-full focus:outline-none"
                   />
                 </div>
               </div>
