@@ -40,7 +40,7 @@ const List = () => {
       <Header type="list" />
       <div className="flex max-lg:flex-col justify-center lg:mt-5 max-lg:overflow-hidden">
         <div className="w-full max-w-5xl flex gap-5  max-lg:flex-col">
-          <div className=" bg-background  p-2.5 lg:rounded-[10px] lg:sticky top-10 w-1/3 text-xs h-max lg:max-h-[720px] max-lg:w-full lg:min-w-[250px]">
+          <div className=" bg-background  p-2.5 lg:rounded-[10px] lg:sticky top-10 w-1/3 text-xs h-max lg:max-h-[720px] max-lg:w-full lg:min-w-max">
             <h1 className="text-xl font-bold text-gray-600 mb-2.5 max-lg:hidden">
               Search
             </h1>
