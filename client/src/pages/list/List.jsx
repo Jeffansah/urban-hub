@@ -71,9 +71,12 @@ const List = () => {
                 )}`}</span>
                 {openDateModal && (
                   <DateRange
+                    editableDateInputs={true}
                     onChange={(item) => {
                       setDate([item.selection]);
                     }}
+                    moveRangeOnFirstSelection={false}
+                    ranges={date}
                     minDate={new Date()}
                   />
                 )}
