@@ -87,6 +87,7 @@ const List = () => {
                     </span>
                     <input
                       type="number"
+                      min={0}
                       onChange={(e) => setMinPrice(e.target.value)}
                       className="w-[50px] rounded-sm p-1 max-lg:w-full focus:outline-none"
                     />
@@ -97,6 +98,7 @@ const List = () => {
                     </span>
                     <input
                       type="number"
+                      min={0}
                       onChange={(e) => setMaxPrice(e.target.value)}
                       className="w-[50px] rounded-sm p-1 max-lg:w-full focus:outline-none"
                     />
