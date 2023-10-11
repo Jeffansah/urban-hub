@@ -25,7 +25,7 @@ const FeaturedProperties = () => {
                 <div
                   key={index}
                   onClick={() => navigate(`/hotels/${property._id}`)}
-                  className="flex-1 shadow-md rounded-[10px] overflow-hidden cursor-pointer hover:shadow-lg"
+                  className="flex-1 shadow-md rounded-[10px] cursor-pointer hover:shadow-lg"
                 >
                   <div className="max-lg:w-52 w-64 lg:h-52 overflow-hidden">
                     <img
