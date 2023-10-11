@@ -1,4 +1,7 @@
-import React from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
+
+const { user } = useContext(AuthContext);
 
 const DiscountCard = () => {
   return (
@@ -19,12 +22,14 @@ const DiscountCard = () => {
           Our deals help you to save on trips so you can travel more and manage
           it all on the go.
         </p>
-        <div className="flex mt-4 gap-2.5">
-          <button className="border border-[#0071c2] bg-white text-[#0071c2] text-sm rounded-sm p-2 px-3">
-            Sign in
-          </button>
-          <button className="text-[#0071c2] text-sm p-2">Register</button>
-        </div>
+        {!user && (
+          <div className="flex mt-4 gap-2.5">
+            <button className="border border-[#0071c2] bg-white text-[#0071c2] text-sm rounded-sm p-2 px-3">
+              Sign in
+            </button>
+            <button className="text-[#0071c2] text-sm p-2">Register</button>
+          </div>
+        )}
       </div>
     </div>
   );
