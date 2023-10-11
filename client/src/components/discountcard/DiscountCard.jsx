@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
-const { user } = useContext(AuthContext);
-
 const DiscountCard = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="w-full max-w-5xl flex mt-12 border border-gray-200 rounded-md max-md:pt-3 pb-4 max-md:px-3">
       <div className="p-6 pl-8 max-sm:hidden">
