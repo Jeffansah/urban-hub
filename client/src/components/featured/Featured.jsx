@@ -25,10 +25,10 @@ const Featured = () => {
             <h1 className="font-semibold text-3xl max-md:text-2xl">
               {item.city}
             </h1>
-            <h2 className="font-medium lg:text-xl max-md:text-sm md:text-lg">
-              {!data ? "properties" : data[index]} propert
-              {data[index] === 1 ? "y" : "ies"}
-            </h2>
+            {/* <h2 className="font-medium lg:text-xl max-md:text-sm md:text-lg">
+                  {!data ? "properties" : data[index]} propert
+                  {data[index] === 1 ? "y" : "ies"}
+                </h2> */}
           </div>
         </div>
       ))}
