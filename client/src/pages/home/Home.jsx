@@ -33,7 +33,7 @@ const Home = () => {
         <FeaturedProperties />
         <DiscountCard />
         <Banner
-          img="https://i.ibb.co/80nTW8n/wepik-export-2023090519192693-OO.png"
+          img="https://i.ibb.co/42q919Q/riverbanner.webp"
           title="The Greatest Outdoors"
           description="Wishlists curated by UrbanHub"
           buttonText="Get Inspired"
